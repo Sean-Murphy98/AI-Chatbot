@@ -33,10 +33,13 @@ async def token_generator(name: str, request: Request):
         messages=[],
         name=name
     )
+
+    print(chat_session.dict())
+
+    #Create new chat session
     json_client.json().set(str(token), "$", chat_session.dict())
     redis_client = await redis.create_connection()
     await redis_client.expire(str(token), 3600)
-    data = {"name": name, "token": token}
 
     return chat_session.dict()
 
