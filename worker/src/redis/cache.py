@@ -15,6 +15,5 @@ class Cache:
           message_data['msg'] = "Human: " + (message_data['msg'])
       elif source == "bot":
           message_data['msg'] = "Bot: " + (message_data['msg'])
-          
       self.json_client.json().arrappend(
           str(token), ('.messages'), message_data)
